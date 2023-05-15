@@ -121,6 +121,7 @@ namespace HanoiTowers
                 Refresh();
             }
 
+            // pohyb oranžového bloku nahorů z věže B na věž C po dokončení pohybu zeleného bloku na Y = 118; pouze pokud ještě nebyl pohyb oranžového bloku nahoru z věže B prováděn
             if(vez1_green_X1 == 310 && vez1_green_Y1 == 118 && vez1_orange_Y1 > 48 && vez2_nahoru_1 == false)
             {
                 vez1_orange_Y1 -= 2;
@@ -128,14 +129,16 @@ namespace HanoiTowers
                 Refresh();
             }
 
-            if(vez1_orange_Y1 == 48 && vez1_orange_X1 <= 318 && vez1_dolu_2 == true && vez2_vlevo_1 == false)
+            // pohyb oranžového bloku vlevo od věže B k věži C po dokončení pohybu oranžového bloku nahoru na Y = 48; pouze pokud ještě nebyl pohyb oranžového bloku doleva od věže B prováděn
+            if (vez1_orange_Y1 == 48 && vez1_orange_X1 <= 318 && vez1_dolu_2 == true && vez2_vlevo_1 == false)
             {
                 vez1_orange_X1 += 2;
                 vez2_nahoru_1 = true;
                 Refresh();
             }
 
-            if(vez1_orange_X1 == 320 && vez1_orange_Y1 <= 96 && vez1_nahoru_2 == true && vez2_dolu_1 == false)
+            // pohyb oranžového bloku dolů na věž C po dokončení pohybu oranžového bloku vlevo na X = 320; pouze pokud ještě nebyl pohyb oranžového bloku dolů na věž C prováděn
+            if (vez1_orange_X1 == 320 && vez1_orange_Y1 <= 96 && vez1_nahoru_2 == true && vez2_dolu_1 == false)
             {
                 vez1_orange_Y1 += 2;
                 vez2_vlevo_1 = true;
@@ -163,7 +166,7 @@ namespace HanoiTowers
                 Refresh();
             }
 
-            // výpis souřadnic bloku ve tvaru [X; Y]
+            // výpis souřadnic bloků ve tvaru [X; Y]
             lblSouradniceCervena.Text = $"Červený blok: [{vez1_red_X1};{vez1_red_Y1}]";
             lblSouradniceOranzova.Text = $"Oranžový blok: [{vez1_orange_X1};{vez1_orange_Y1}]";
             lblSouradniceZelena.Text = $"Zelený blok: [{vez1_green_X1};{vez1_green_Y1}]";
@@ -174,25 +177,25 @@ namespace HanoiTowers
             Graphics platno = e.Graphics;
             Pen peroCara = new Pen(Color.Black, 4);
 
-            // věž A
+            // vykreslení věže A
             platno.DrawLine(peroCara, 20, 140, 120, 140);
             platno.DrawLine(peroCara, 70, 70, 70, 140);
 
-            // věž B
+            // vykreslení věže B
             platno.DrawLine(peroCara, 160, 140, 260, 140);
             platno.DrawLine(peroCara, 210, 70, 210, 140);
             // platno.FillRectangle(Brushes.Green, 170, 118, 80, 20);
             // platno.FillRectangle(Brushes.Orange, 180, 98, 60, 20);
             // platno.FillRectangle(Brushes.Red, 190, 118, 40, 20);
 
-            // věž C
+            // vykreslení věže C
             platno.DrawLine(peroCara, 300, 140, 400, 140);
             platno.DrawLine(peroCara, 350, 70, 350, 140);
             // platno.FillRectangle(Brushes.Green, 310, 118, 80, 20);
             // platno.FillRectangle(Brushes.Orange, 320, 98, 60, 20);
             // platno.FillRectangle(Brushes.Red, 330, 78, 40, 20);
 
-            // bloky pro věž A
+            // vykreslení bloků
             platno.FillRectangle(Brushes.Green, vez1_green_X1, vez1_green_Y1, 80, 20);
             platno.FillRectangle(Brushes.Orange, vez1_orange_X1, vez1_orange_Y1, 60, 20);
             platno.FillRectangle(Brushes.Red, vez1_red_X1, vez1_red_Y1, 40, 20);
